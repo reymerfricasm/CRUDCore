@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CRUDCore.Models.Citizen>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-md-3">
+        @using (Html.BeginForm("Find", "Citizens", FormMethod.Get))
+        {
+            @Html.TextBox("SearchString", "", new { @class = "form-control" })
+            <input type="submit" name="" value="Search" class="btn btn-default" />
+        }
+    </div>
+</div>
+
+
+@*@using (Html.BeginForm("Find", "Citizens", FormMethod.Get))
+    {
+        <p>
+            Title: @Html.TextBox("SearchString") <br />
+            <input type="submit" value="Filter" />
+        </p>
+    }*@
+
+@*<form asp-action="Find">
+        <input asp-for="@id.CitizenIdentification" type="text" name="name" value="" placeholder="Buscar por cedula" class="form-control"/>
+        <input type="submit" name="name" value="Search" class="btn btn-default"/>
+    </form>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenIdentification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CitizenIdentification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CitizenId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CitizenId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CitizenId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

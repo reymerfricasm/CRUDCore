@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using CRUDCore.Models;
 
 namespace CRUDCore
 {
@@ -22,6 +24,8 @@ namespace CRUDCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            var connection = "Data Source=REYMER-PC;Initial Catalog=PRG;Integrated Security=True";
+            services.AddDbContext<PRGContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
